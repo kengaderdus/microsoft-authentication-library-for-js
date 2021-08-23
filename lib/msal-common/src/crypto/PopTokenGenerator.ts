@@ -49,7 +49,7 @@ export class PopTokenGenerator {
         const tokenClaims: TokenClaims | null = AuthToken.extractTokenClaims(accessToken, this.cryptoUtils);
 
         // Deconstruct request to extract SHR parameters
-        const { resourceRequestMethod, resourceRequestUri, shrClaims } = request;
+        const { resourceRequestMethod, resourceRequestUri, shrClaims, serverNonce } = request;
 
         const resourceUrlString = (resourceRequestUri) ? new UrlString(resourceRequestUri) : undefined;
         const resourceUrlComponents = resourceUrlString?.getUrlComponents();
@@ -63,7 +63,7 @@ export class PopTokenGenerator {
             ts: TimeUtils.nowSeconds(),
             m: resourceRequestMethod?.toUpperCase(),
             u: resourceUrlComponents?.HostNameAndPort,
-            nonce: this.cryptoUtils.createNewGuid(),
+            nonce: serverNonce || undefined,
             p: resourceUrlComponents?.AbsolutePath,
             q: (resourceUrlComponents?.QueryString) ? [[], resourceUrlComponents.QueryString] : undefined,
             client_claims: shrClaims || undefined
