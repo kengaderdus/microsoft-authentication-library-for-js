@@ -66,7 +66,7 @@ export class PopTokenGenerator {
             nonce: serverNonce || undefined,
             p: resourceUrlComponents?.AbsolutePath,
             q: (resourceUrlComponents?.QueryString) ? [[], resourceUrlComponents.QueryString] : undefined,
-            client_claims: shrClaims || undefined
+            client_claims: shrClaims || this.cryptoUtils.createNewGuid()
         }, tokenClaims.cnf.kid);
     }
 }
