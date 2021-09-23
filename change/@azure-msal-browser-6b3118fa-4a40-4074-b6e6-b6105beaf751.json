@@ -1,6 +1,6 @@
 {
   "type": "patch",
-  "comment": "Only emit handleRedirect start event on first invocation of handleRedirectPromise #4013",
+  "comment": "Move helper functions up to BaseInteractionClient #4049",
   "packageName": "@azure/msal-browser",
   "email": "thomas.norling@microsoft.com",
   "dependentChangeType": "patch"
